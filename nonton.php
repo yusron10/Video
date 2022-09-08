@@ -1,6 +1,14 @@
 <?php 
-require 'function.php';
-$datach = query("SELECT * FROM isidata")
+
+ if(isset($_GET['yt_id'])){
+        $yt_id= $_GET['yt_id'];
+    }
+    else {
+        die ("LOL");    
+    }
+    include "function.php";
+    $query = mysqli_query($db, "SELECT * FROM isidata WHERE yt_id='$yt_id'");
+    $r = mysqli_fetch_array($query);
  ?>
 
 <!DOCTYPE html>
@@ -12,9 +20,7 @@ $datach = query("SELECT * FROM isidata")
 	<link rel="stylesheet" href="">
 </head>
 <body>
-	<h1>Contoh</h1>
-	<?php foreach ($datach as $d ) : ?>
-	<iframe width="853" height="480" src="https://www.youtube.com/embed/<?php echo $d["yt_id"] ?>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<?php endforeach; ?>
+	<h1><?php echo $r ["judul"] ?></h1>
+	<iframe width="853" height="480" src="https://www.youtube.com/embed/<?php echo $r["yt_id"] ?>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </body>
 </html>
