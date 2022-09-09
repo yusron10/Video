@@ -1,23 +1,15 @@
-// Ambil Element yang di butuhkan
-var keyword = document.getElementById('keyword');
-var tombolCari = document.getElementById('tombol-cari');
-var container = document.getElementById('container');
+$(document).ready(function () {
 
-// Tambahlan event ketika Keyword di tulis
 
-keyword.addEventListener('keyup', function () {
+	$('#tombol-cari').hide();
 
-	// Buat Object AJAX
-	var xhr = new XMLHttpRequest();
+	$('#keyword').on('keyup', function () {
 
-	// Cek Kesiapan Ajax
-	xhr.onreadystatechange = function() {
-		if ( xhr.readyState == 4 && xhr.status == 200) {
-			container.innerHTML = xhr.responseText;
-		}
-	}
+		$('.loader').show();
 
-	// eksekusi ajax
-	xhr.open('GET', 'ajax/data.php?keyword=' +  keyword.value, true);
-	xhr.send();
+		$.get('ajax/data.php?keyword=' + $('#keyword').val(), function (data) {
+			$('#container').html(data);
+			$('.loader').hide();
+		})
+	});
 });

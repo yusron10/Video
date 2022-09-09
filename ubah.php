@@ -6,15 +6,16 @@ if ( !isset($_SESSION["login"]) ) {
 	exit;
 }
 
+
 require 'function.php';
 
 // Ambil Data Dari URL
-$id = $_GET["id"];
+$v = $_GET["id"];
 
 
 // query Data Berdasarkan ID
 
-$d = query("SELECT * FROM isidata WHERE id = $id")[0];
+$d = query("SELECT * FROM isidata WHERE id = $v")[0];
 
 if( isset($_POST ["submit"]) ) {
 	if ( ubah($_POST) > 0) {

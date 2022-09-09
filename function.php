@@ -92,11 +92,11 @@
 
  	// Cek Apakah Yang di upload adalah gambar
 
- 	$Eksigambarvalid = ['jpg','jpeg','png'];
- 	$Eksigambar = explode('.', $namafile);
- 	$Eksigambar = strtolower(end($Eksigambar));
+ 	$eksigambarvalid = ['jpg','jpeg','png'];
+ 	$eksigambar = explode('.', $namafile);
+ 	$eksigambar = strtolower(end($eksigambar));
 
- 	if ( !in_array($Eksigambar, $Eksigambarvalid) ) {
+ 	if ( !in_array($eksigambar, $eksigambarvalid) ) {
  		 echo "<script>
  		alert ('Bukan Gambar');
  		</script>";
@@ -106,7 +106,7 @@
 
  	// CEK SIZE
 
- 	if (  $ukuranfile > 3000000) {
+ 	if ( $ukuranfile > 3000000) {
  		echo "<script>
  		alert('Size terlalu Besar');
  		</script>";
@@ -117,7 +117,7 @@
 
  	$namafilebaru = uniqid();
  	$namafilebaru = '.';
- 	$namafilebaru = $Eksigambar;
+ 	$namafilebaru = $eksigambar;
  	move_uploaded_file($tmpname, 'img/' . $namafilebaru);
  	return $namafilebaru;
  }
@@ -153,7 +153,7 @@
  	judul = '$judul',
  	gambar = '$gambar',
  	yt_id = '$yt_id'
- 	WHERE id =$id
+ 	WHERE id = $id
  	";
 
  	mysqli_query ($db, $query);
@@ -164,7 +164,8 @@
 
  function cari($keyword) {
 	$query = "SELECT * FROM isidata WHERE 
-	judul LIKE '%$keyword%'
+	judul LIKE '%$keyword%' OR 
+	kategori_id LIKE '%$keyword%'
 	";
 
 	return query ($query);

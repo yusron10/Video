@@ -37,6 +37,13 @@ if( isset($_POST["submit"]) ) {
  				<input type="text" name="judul" id="judul" required>
  			</li>
  			<br>
+
+ 			<li>
+ 				
+ 				<label for="slug">Slug : </label>
+ 				<input type="text" name="slug" id="slug" readonly>
+ 			</li>
+ 			<br>
  			<li>
  				<label for="kategori_id">Kategori : </label>
  				<select name="kategori_id" id="kategori_id">
@@ -65,5 +72,15 @@ if( isset($_POST["submit"]) ) {
  			</li>
  		</ul>
  	</form>
+ 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+ 	<script>
+ 		$('#judul').keyup(function () {
+ 			var str = $(this).val();
+ 			var trims = $.trim(str)
+ 			var slug = trims.replace(/[^a-z0-9]/gi, '-').replace(/-+/g, '-').replace(/^-|-$/g, '')
+ 			$("#slug").val(slug.toLowerCase()+".com")
+ 		})
+ 	</script>
  </body>
  </html>

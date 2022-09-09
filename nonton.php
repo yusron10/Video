@@ -1,7 +1,7 @@
 <?php 
 
- if(isset($_GET['yt_id'])){
-        $yt_id= $_GET['yt_id'];
+ if(isset($_GET['watch'])){
+        $yt_id= $_GET['watch'];
     }
     else {
         die ("LOL");    
